@@ -55,7 +55,7 @@ public class ReservationController {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        return ResponseEntity.ok("Reservation cancellation processed successfully");
+        return ResponseEntity.ok("Reservation cancellation processed successfully. Check out your email for verification code");
     }
 
     @DeleteMapping("/{id}")

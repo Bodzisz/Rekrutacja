@@ -18,7 +18,6 @@ import javax.mail.internet.MimeMessage;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Locale;
-import java.util.Optional;
 
 @Service
 public class ReservationService {
@@ -69,7 +68,7 @@ public class ReservationService {
         ctx.setVariable("reservation", reservation);
 
 
-        this.sendMail(ctx, "email-reservation.html", reservation.getEmail());
+        this.sendMail(ctx, "email-reservation.html", reservation.getEmail(), "Reservation confirmed");
 
         return reservation;
     }
@@ -89,7 +88,7 @@ public class ReservationService {
         ctx.setVariable("reservation", reservation);
         ctx.setVariable("verificationCode", cancellation.getCode());
 
-        this.sendMail(ctx, "email-reservation-cancel.html", reservation.getEmail());
+        this.sendMail(ctx, "email-reservation-cancel.html", reservation.getEmail(), "Reservation cancellation");
     }
 
     public void deleteReservation(int id, String code) {
@@ -107,7 +106,7 @@ public class ReservationService {
             ctx.setVariable("id", id);
             ctx.setVariable("name", reservation.getFullName());
 
-            this.sendMail(ctx, "email-reservation-deleted", reservation.getEmail());
+            this.sendMail(ctx, "email-reservation-deleted", reservation.getEmail(), "Reservation delete");
 
             reservationRepository.deleteById(id);
         }
@@ -116,12 +115,12 @@ public class ReservationService {
         }
     }
 
-    public void sendMail(Context ctx, String template, String sentTo) {
+    public void sendMail(Context ctx, String template, String sentTo, String subject) {
         final MimeMessage mimeMessage = this.mailSender.createMimeMessage();
         final MimeMessageHelper message;
         try {
             message = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-            message.setSubject("Restaurant table reservation");
+            message.setSubject(subject);
             message.setFrom(sentFrom);
             message.setTo(sentTo);
 
