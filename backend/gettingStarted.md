@@ -20,3 +20,11 @@ and called **initSqlScript.sql** to create schemas
   ```.properties
     spring.datasource.url=jdbc:mysql://localhost:3306/restaurant?allowPublicKeyRetrieval=true&useSSL=false
   ```
+
+#### Mailing setup
+- If you are using [Ethernal](https://ethereal.email/) for fake emails just enter your credentials in **application.properties**:
+  ```.properties
+    spring.mail.username=
+    spring.mail.password=
+  ```
+  For other source you need to configure other properties
