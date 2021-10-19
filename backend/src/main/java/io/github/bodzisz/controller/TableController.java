@@ -25,18 +25,14 @@ public class TableController {
         this.tableService = tableService;
     }
 
-    @GetMapping
-    public ResponseEntity<List<Table>> getAllTables() {
-        return ResponseEntity.ok(tableService.getAllTables());
-    }
 
-    @GetMapping("/params")
-    public ResponseEntity<List<Table>> getAllTablesWithParams(@RequestParam(required = false, name = "min_seats") Integer minSeats,
+    @GetMapping
+    public ResponseEntity<List<Table>> getAllTablesWithParams(@RequestParam(required = false, name = "seats") Integer seats,
                                                               @RequestParam(required = false) String status,
                                                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
                                                               @RequestParam(required = false, name = "date")LocalDateTime startDate,
                                                               @RequestParam(required = false) Integer duration) {
 
-        return ResponseEntity.ok(tableService.getAllTablesWith(minSeats, status, startDate, duration));
+        return ResponseEntity.ok(tableService.getAllTablesWith(seats, status, startDate, duration));
     }
 }

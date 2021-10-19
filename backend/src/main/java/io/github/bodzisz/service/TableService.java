@@ -21,11 +21,10 @@ public class TableService {
         return  tableRepository.findAll();
     }
 
-    public List<Table> getAllTablesWith(Integer minSeats, String status, LocalDateTime date, Integer duration) {
+    public List<Table> getAllTablesWith(Integer seats, String status, LocalDateTime date, Integer duration) {
         List<Table> allTables = tableRepository.findAll();
 
         boolean available;
-        if(minSeats == null) { minSeats = 0; }
         if(status == null) {
             available = true;
         }
@@ -35,15 +34,22 @@ public class TableService {
         if(date == null) { date = LocalDateTime.now(); }
         if(duration == null) { duration = 0; }
 
-        Integer finalMinSeats = minSeats;
         boolean finalAvailable = available;
         LocalDateTime finalDate = date;
         Integer finalDuration = duration;
 
-        allTables = allTables.stream()
-                .filter(table -> table.getMinNumberOfSeats() >= finalMinSeats)
-                .filter(table -> table.isAvailable(finalDate, finalDuration) == finalAvailable)
-                .collect(Collectors.toList());
+        if(seats == null) {
+            allTables = allTables.stream()
+                    .filter(table -> table.isAvailable(finalDate, finalDuration) == finalAvailable)
+                    .collect(Collectors.toList());
+        }
+        else {
+            allTables = allTables.stream()
+                    .filter(table -> table.getMinNumberOfSeats() <= seats)
+                    .filter(table -> table.getMaxNumberOfSeats() >= seats)
+                    .filter(table -> table.isAvailable(finalDate, finalDuration) == finalAvailable)
+                    .collect(Collectors.toList());
+        }
 
         return allTables;
     }
