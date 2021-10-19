@@ -9,10 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Set;
 
 @Configuration
-public class MvcConfiguration implements WebMvcConfigurer {
+public class InterceptorsConfig implements WebMvcConfigurer {
     private RequestInterceptor requestInterceptor;
 
-    public MvcConfiguration(RequestInterceptor requestInterceptor) {
+    public InterceptorsConfig(RequestInterceptor requestInterceptor) {
         this.requestInterceptor = requestInterceptor;
     }
 
