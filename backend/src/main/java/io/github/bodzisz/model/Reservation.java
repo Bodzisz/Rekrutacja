@@ -50,6 +50,10 @@ public class Reservation {
                 '}';
     }
 
+    public boolean canBeCancelled() {
+        return !LocalDateTime.now().plusHours(2).isAfter(date);
+    }
+
     public int getId() {
         return id;
     }

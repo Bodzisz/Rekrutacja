@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email template for deleted reservation</title>
+</head>
+<body>
+    <p th:text="|Hello ${name}!|"></p>
+
+    <p>
+        Your reservation with id <b th:text="${id}" style="color: blue"></b> is sucessfully deleted!
+    </p>
+    <br>
+
+    <p>We hope we will see each other next time!</p>
+</body>
+</html>

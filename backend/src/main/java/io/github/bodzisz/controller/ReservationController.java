@@ -46,4 +46,26 @@ public class ReservationController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<String> requestReservationCancellation(@PathVariable("id") int id) {
+        try {
+            reservationService.requestReservationCancellation(id);
+        } catch (IllegalArgumentException | IllegalStateException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok("Reservation cancellation processed successfully");
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteReservation(@PathVariable("id") int id, @RequestBody String code) {
+        try {
+            reservationService.deleteReservation(id, code);
+        } catch(IllegalArgumentException | IllegalStateException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+        return ResponseEntity.ok("Reservation deleted!");
+    }
 }
