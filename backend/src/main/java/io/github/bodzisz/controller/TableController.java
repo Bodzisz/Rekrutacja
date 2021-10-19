@@ -1,7 +1,6 @@
 package io.github.bodzisz.controller;
 
 import io.github.bodzisz.model.Table;
-import io.github.bodzisz.repository.TableRepository;
 import io.github.bodzisz.service.TableService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,14 +25,6 @@ public class TableController {
         this.tableService = tableService;
     }
 
-    //    @GetMapping(path = "/tables", produces = "application/json")
-//    public ResponseEntity<List<Table>> getAllTables(@RequestParam(required = false) Integer min_seats,
-//                                                    @RequestParam(required = false) String status) {
-//        if(min_seats == null) { min_seats = 0; }
-//        if(status == null) { status = "free"; }
-//        return ResponseEntity.ok(tableRepository.getTables().getTables(status, min_seats));
-//    }
-
     @GetMapping
     public ResponseEntity<List<Table>> getAllTables() {
         return ResponseEntity.ok(tableService.getAllTables());
@@ -46,7 +37,6 @@ public class TableController {
                                                               @RequestParam(required = false, name = "date")LocalDateTime startDate,
                                                               @RequestParam(required = false) Integer duration) {
 
-        logger.info("[GET][Tables]:  min_seats-" + minSeats + " status-" + status + " date-" + startDate + " duration- " + duration );
         return ResponseEntity.ok(tableService.getAllTablesWith(minSeats, status, startDate, duration));
     }
 }
