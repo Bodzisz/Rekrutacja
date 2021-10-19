@@ -25,3 +25,10 @@ CREATE TABLE IF NOT EXISTS reservations(
 
     PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS cancellations(
+    id int NOT NULL,
+    code varchar(6) NOT NULL,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id) REFERENCES reservations(id) ON DELETE CASCADE
+);

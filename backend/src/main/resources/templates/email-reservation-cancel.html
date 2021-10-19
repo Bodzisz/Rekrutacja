@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation cancellation email template</title>
+</head>
+<body>
+    <p th:text="|Hello ${reservation.getFullName()}!|"></p>
+
+    <p>
+        We have processed your cancellation request for reservation with id: </br>
+    </p>
+    <p th:text="${reservation.getId()}" style="color: blue"></p>
+    <p> Here is your 6-digit verification code to confirm the cancellation:</p>
+    <p> <b th:text="${verificationCode}" style="color: red"></b></p>
+
+    <br>
+
+
+</body>
+</html>
