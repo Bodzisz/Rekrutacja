@@ -28,7 +28,7 @@ public class TablesInitializer {
         this.objectMapper = objectMapper;
     }
 
-    // when tables is empty in database
+    // when 'tables' is empty in database
     @Transactional
     @PostConstruct
     public void initialize() {

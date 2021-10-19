@@ -44,7 +44,13 @@ public class Table {
     public boolean isAvailable(LocalDateTime date, int duration) {
         for(Reservation reservation : reservations) {
             if(date.isAfter(reservation.getDate()) &&
-                    date.plusHours(duration).isBefore(reservation.getDate().plusHours(reservation.getDuration()))) {
+                    date.plusHours(duration).isBefore(reservation.getDate().plusHours(reservation.getDuration()))
+            ||
+                    date.isBefore(reservation.getDate().plusHours(reservation.getDuration())) &&
+                            date.plusHours(duration).isAfter(reservation.getDate().plusHours(reservation.getDuration()))
+                    ||
+                    date.isBefore(reservation.getDate()) && date.plusHours(duration).isAfter(reservation.getDate())
+            ) {
                 return false;
             }
         }
