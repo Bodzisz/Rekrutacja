@@ -50,6 +50,8 @@ public class Table {
                             date.plusHours(duration).isAfter(reservation.getDate().plusHours(reservation.getDuration()))
                     ||
                     date.isBefore(reservation.getDate()) && date.plusHours(duration).isAfter(reservation.getDate())
+                    ||
+                    date.equals(reservation.getDate())
             ) {
                 return false;
             }

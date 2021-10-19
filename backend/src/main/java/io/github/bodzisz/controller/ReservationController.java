@@ -5,6 +5,7 @@ import io.github.bodzisz.repository.ReservationRepository;
 import io.github.bodzisz.service.ReservationService;
 import org.apache.tomcat.jni.Local;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -31,13 +32,18 @@ public class ReservationController {
     }
 
     @PostMapping
-    public ResponseEntity<Reservation> saveReservation (@RequestBody Reservation reservation) {
-        Reservation savedReservation = reservationService.saveReservation(reservation);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}")
-                .buildAndExpand(savedReservation.getId())
-                .toUri();
+    public ResponseEntity<?> saveReservation (@RequestBody Reservation reservation) {
+        try {
+            Reservation savedReservation = reservationService.saveReservation(reservation);
+            URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(savedReservation.getId())
+                    .toUri();
 
-        return ResponseEntity.created(location).body(savedReservation);
+            return ResponseEntity.created(location).body(savedReservation);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }
