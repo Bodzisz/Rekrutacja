@@ -2,6 +2,7 @@ package io.github.bodzisz.controller;
 
 import io.github.bodzisz.model.Reservation;
 import io.github.bodzisz.repository.ReservationRepository;
+import io.github.bodzisz.service.ReservationService;
 import org.apache.tomcat.jni.Local;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
@@ -16,26 +17,22 @@ import java.util.List;
 @RequestMapping("/reservations")
 public class ReservationController {
 
-    ReservationRepository reservationRepository;
+    ReservationService reservationService;
 
-    public ReservationController(ReservationRepository reservationRepository) {
-        this.reservationRepository = reservationRepository;
+    public ReservationController(ReservationService reservationService) {
+        this.reservationService = reservationService;
     }
 
     @GetMapping
     public ResponseEntity<List<Reservation>> getAllReservations(@RequestParam(name = "date",required = false)
                                                                     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
                                                                             LocalDateTime date) {
-        if(date == null) {
-            return ResponseEntity.ok(reservationRepository.findAll());
-        }
-        return ResponseEntity.ok(reservationRepository.findReservationByDateBetween(date.toLocalDate().atStartOfDay(),
-                date.plusDays(1).toLocalDate().atStartOfDay()));
+        return ResponseEntity.ok(reservationService.getAllReservations(date));
     }
 
     @PostMapping
     public ResponseEntity<Reservation> saveReservation (@RequestBody Reservation reservation) {
-        Reservation savedReservation = reservationRepository.save(reservation);
+        Reservation savedReservation = reservationService.saveReservation(reservation);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedReservation.getId())
