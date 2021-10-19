@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Email template for table reservation</title>
+</head>
+<body>
+    <p th:text="|Hello ${reservation.getFullName()}!|"></p>
+
+    <p>
+        We have processed your table reservation in our restaurant. </br>
+        Your unique id for reservation:
+    </p>
+
+    <p> <b th:text="${reservation.getId()}" style="color: blue"></b></p>
+
+    <p> Here you can find all your details for reservation: </p>
+    <ul>
+        <li th:text="|Name: ${reservation.getFullName()}|"></li>
+        <li th:text="|Date: ${reservation.getDate()}|"></li>
+        <li th:text="|Table number: ${reservation.getSeatNumber()}|"></li>
+        <li th:text="|Duration(hours): ${reservation.getDuration()}|"></li>
+        <li th:text="|Number of seats: ${reservation.getNumberOfSeats()}|"></li>
+        <li th:text="|Phone number: ${reservation.getPhone()}|"></li>
+    </ul>
+    <br>
+
+    <p>Thank for your reservation! See you!</p>
+
+</body>
+</html>
