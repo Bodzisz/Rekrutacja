@@ -50,6 +50,12 @@ public class ReservationService {
     }
 
     public Reservation saveReservation(Reservation reservation) {
+        if(!reservation.getEmail().contains("@") || !reservation.getEmail().contains(".")) {
+            throw new IllegalArgumentException("Not valid email");
+        }
+        if(reservation.getDuration() <= 0) {
+            throw new IllegalArgumentException("Reservation duration has to be at least 1 hour");
+        }
         Table table = tableRepository.findById(reservation.getSeatNumber())
                 .orElseThrow(() -> new IllegalArgumentException("Table with given seat number does not exist"));
 

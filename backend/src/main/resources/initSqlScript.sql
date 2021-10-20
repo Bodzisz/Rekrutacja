@@ -18,9 +18,9 @@ CREATE TABLE IF NOT EXISTS reservations(
     date datetime NOT NULL,
     duration int NOT NULL,
     seat_number int NOT NULL,
-    full_name varchar(50),
+    full_name varchar(50) NOT NULL ,
     phone varchar(12),
-    email varchar(50),
+    email varchar(50) NOT NULL,
     number_of_seats int NOT NULL,
 
     PRIMARY KEY (id)

@@ -19,7 +19,7 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    @DateTimeFormat(iso = ISO.DATE_TIME)
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Column(name = "date")
     private LocalDateTime date;
