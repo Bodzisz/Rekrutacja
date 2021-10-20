@@ -1,14 +1,14 @@
-###Here you can find all the instructions to run this project
+### Here you can find all the instructions to run this project
 
 #### Database setup
-- First you need to connect to your MySQL database. Then
- you need to run my DDL script located in **/src/main/resources/**
-and called **initSqlScript.sql** to create schemas
+- First you need to connect to your MySQL database
+- Run my DDL script located in **/src/main/resources/**
+  and called **initSqlScript.sql** to create schemas
 - Then you have to configure application properties. You can delete line
     ```.properties
     spring.profiles.active=local
   ```
-  and enter your MySQL credentials in **application.properties**: 
+  and enter your MySQL credentials in **application.properties** (or in your active spring profile): 
   ```.properties
     spring.datasource.username=
     spring.datasource.password=
