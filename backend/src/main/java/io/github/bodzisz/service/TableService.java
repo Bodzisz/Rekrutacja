@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class TableService {
-    private TableRepository tableRepository;
+    private final TableRepository tableRepository;
 
-    public TableService(TableRepository tableRepository) {
+    public TableService(final TableRepository tableRepository) {
         this.tableRepository = tableRepository;
     }
 

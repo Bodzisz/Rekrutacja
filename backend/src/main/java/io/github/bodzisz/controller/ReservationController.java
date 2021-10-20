@@ -15,9 +15,9 @@ import java.util.List;
 @RequestMapping("/reservations")
 public class ReservationController {
 
-    ReservationService reservationService;
+    private final ReservationService reservationService;
 
-    public ReservationController(ReservationService reservationService) {
+    public ReservationController(final ReservationService reservationService) {
         this.reservationService = reservationService;
     }
 

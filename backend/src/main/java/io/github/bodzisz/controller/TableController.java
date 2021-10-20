@@ -18,10 +18,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/tables")
 public class TableController {
-    TableService tableService;
-    Logger logger = LoggerFactory.getLogger(TableController.class);
+    private TableService tableService;
+    private Logger logger = LoggerFactory.getLogger(TableController.class);
 
-    public TableController(TableService tableService) {
+    public TableController(final TableService tableService) {
         this.tableService = tableService;
     }
 

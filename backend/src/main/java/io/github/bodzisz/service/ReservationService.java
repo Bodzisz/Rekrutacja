@@ -22,18 +22,18 @@ import java.util.Locale;
 @Service
 public class ReservationService {
 
-    ReservationRepository reservationRepository;
-    TableRepository tableRepository;
-    CancellationRepository cancellationRepository;
+    private final ReservationRepository reservationRepository;
+    private final TableRepository tableRepository;
+    private final CancellationRepository cancellationRepository;
 
-    JavaMailSender mailSender;
-    TemplateEngine templateEngine;
+    private final JavaMailSender mailSender;
+    private final TemplateEngine templateEngine;
     @Value("${spring.mail.username}")
-    String sentFrom;
+    private String sentFrom;
 
-    public ReservationService(ReservationRepository reservationRepository, TableRepository tableRepository,
-                              JavaMailSender mailSender, TemplateEngine templateEngine,
-                              CancellationRepository cancellationRepository) {
+    public ReservationService(final ReservationRepository reservationRepository, final TableRepository tableRepository,
+                              final JavaMailSender mailSender, final TemplateEngine templateEngine,
+                              final CancellationRepository cancellationRepository) {
         this.reservationRepository = reservationRepository;
         this.tableRepository = tableRepository;
         this.mailSender = mailSender;

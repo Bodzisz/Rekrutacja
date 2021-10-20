@@ -19,11 +19,11 @@ import java.util.List;
 @Component
 public class TablesInitializer {
 
-    private TableRepository repository;
-    private ObjectMapper objectMapper;
-    private Logger logger = LoggerFactory.getLogger(TablesInitializer.class);
+    private final TableRepository repository;
+    private final ObjectMapper objectMapper;
+    private final Logger logger = LoggerFactory.getLogger(TablesInitializer.class);
 
-    public TablesInitializer(TableRepository repository, ObjectMapper objectMapper) {
+    public TablesInitializer(final TableRepository repository, final ObjectMapper objectMapper) {
         this.repository = repository;
         this.objectMapper = objectMapper;
     }

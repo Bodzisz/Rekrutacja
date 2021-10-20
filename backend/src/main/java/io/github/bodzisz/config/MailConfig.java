@@ -15,12 +15,6 @@ import java.util.Collections;
 @Configuration
 public class MailConfig {
 
-    Environment environment;
-
-    public MailConfig(Environment environment) {
-        this.environment = environment;
-    }
-
     @Bean
     public TemplateEngine emailTemplateEngine() {
         final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
