@@ -104,7 +104,7 @@ public class ReservationService {
                 .orElseThrow(() -> new IllegalArgumentException("Reservation with given id does not exist"));
 
         if(!reservation.canBeCancelled()) {
-            throw new IllegalStateException("Reservation can be cancelled at least 2 hours before reservation time");
+            throw new IllegalStateException("Reservation has be deleted at least 2 hours before reservation time");
         }
 
         if(cancellation.getCode().equals(code)) {
