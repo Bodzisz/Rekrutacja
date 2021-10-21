@@ -10,7 +10,7 @@ import java.util.Set;
 
 @Configuration
 public class InterceptorsConfig implements WebMvcConfigurer {
-    private RequestInterceptor requestInterceptor;
+    private final RequestInterceptor requestInterceptor;
 
     public InterceptorsConfig(RequestInterceptor requestInterceptor) {
         this.requestInterceptor = requestInterceptor;
