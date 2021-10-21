@@ -7,9 +7,17 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
+import java.util.Optional;
 
-@Repository
-public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
+public interface ReservationRepository{
+
+    List<Reservation> findAll();
+
+    Optional<Reservation> findById(Integer id);
 
     List<Reservation> findReservationByDateBetween(LocalDateTime start, LocalDateTime end);
+
+    Reservation save(Reservation reservation);
+
+    void deleteById(Integer id);
 }
