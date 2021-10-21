@@ -80,6 +80,11 @@ public class ReservationService {
     }
 
     public void requestReservationCancellation(int id) {
+
+        if(cancellationRepository.existsById(id)) {
+            throw new IllegalStateException("Cancellation is already processed. Check your email");
+        }
+
         Reservation reservation =  reservationRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Reservation with given id does not exist"));
 
