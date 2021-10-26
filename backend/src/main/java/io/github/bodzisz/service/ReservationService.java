@@ -6,6 +6,8 @@ import io.github.bodzisz.model.Table;
 import io.github.bodzisz.repository.CancellationRepository;
 import io.github.bodzisz.repository.ReservationRepository;
 import io.github.bodzisz.repository.TableRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -26,6 +28,7 @@ public class ReservationService {
     private final TableRepository tableRepository;
     private final CancellationRepository cancellationRepository;
 
+    private final Logger logger = LoggerFactory.getLogger(ReservationService.class);
     private final JavaMailSender mailSender;
     private final TemplateEngine templateEngine;
     @Value("${spring.mail.username}")
@@ -139,6 +142,7 @@ public class ReservationService {
             message.setText(htmlContent, true);
 
             this.mailSender.send(mimeMessage);
+            logger.info("[EMAIL SENT][" + sentTo + "]");
         } catch (MessagingException e) {
             e.printStackTrace();
         }
